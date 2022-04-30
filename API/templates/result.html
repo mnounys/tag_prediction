@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Tags prediction {% endblock %}</h1>
+    {% for message in messages %}
+        <div class='message'>
+            <h3>Question : {{ message['title'] }} </h3>
+            <h3>Body</h3>
+            <p>{{ message['body'] }}</p>
+            <h3>Predited tags</h3>
+            <p>{{ message['tags'] }}</p>
+        </div>
+    {% endfor %}
+<button type="button" onclick="window.location.href='{{ url_for('index') }}';">Return</button>
+
+{% endblock %}
