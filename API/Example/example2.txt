@@ -1,0 +1,21 @@
+Oracle SQL -- Analytic functions OVER a group?
+
+My table:
+
+ID   NUM   VAL
+1    1     Hello
+1    2     Goodbye
+2    2     Hey
+2    4     What's up?
+3    5     See you
+If I want to return the max number for each ID, it's really nice and clean:
+
+SELECT MAX(NUM) FROM table GROUP BY (ID)
+But what if I want to grab the value associated with the max of each number for each ID?
+
+Why can't I do:
+
+SELECT MAX(NUM) OVER (ORDER BY NUM) FROM table GROUP BY (ID) 
+Why is that an error? I'd like to have this select grouped by ID, rather than partitioning separately for each window...
+
+EDIT: The error is "not a GROUP BY expression".

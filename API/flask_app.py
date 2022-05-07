@@ -4,6 +4,7 @@ import os
 sourceDir = os.path.join(os.path.dirname(__file__), 'source')
 sys.path.append(sourceDir)
 from TagPrediction import TagPrediction
+import json
 
 app = Flask(__name__)
 app.debug = True
@@ -45,11 +46,27 @@ def getPrediction():
     
     return render_template('result.html', messages = lRes, index_url = url_for('index'))
 
+@app.route('/predictResOnly/', methods=['GET'])
+def getPredictionOnly():
+    
+    if "Title" not in request.args :
+        return 'Error : Title parameter is mandatory'
+    
+    if "Body" not in request.args :
+        return 'Error : Body parameter is mandatory'
+    
+    lTitle = str(request.args['Title'])
+    lBody = str(request.args['Body'])
+     
+    lRes = pred.getPrediction(lTitle,lBody)
+    
+    return json.dumps(lRes)
+
 
 @app.route('/tags/', methods=['GET'])
 def getMetadata():
     listtags = pred.getTagList()
-    return listtags
+    return json.dumps(listtags.tolist())
     
     
 if __name__ == "__main__":

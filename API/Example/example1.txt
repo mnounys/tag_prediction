@@ -1,0 +1,9 @@
+Question : Is it possible to use C# Object Initializers with Factories
+Body
+<p>I\'m looking at the new object initializers in C# 3.0 and would like to use them. However, 
+I can\'t see how to use them with something like Microsoft Unity. I\'m probably missing something but 
+if I want to keep strongly typed property names then I\'m not sure I can. e.g. I can do this (pseudo code)
+</p>\n\n<pre><code>Dictionary&lt;string,object&gt; parms = new Dictionary&lt;string,object&gt;();\nparms.Add("Id", "100");\n\nIThing 
+thing = Factory.Create&lt;IThing&gt;(parms)();\n</code></pre>\n\n<p>and then do something in Create via reflection 
+to initialise the parms... but if I want it strongly typed at the Create level, like the new object intitalisers 
+then I don\'t see how I can.</p>\n\n<p>Is there a better way?\nThanks</p>\n
